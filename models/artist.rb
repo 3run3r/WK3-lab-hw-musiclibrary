@@ -51,5 +51,21 @@ def albums()
   return albums
 end
 
+def update()
+  sql = "UPDATE artists SET
+  name = $1
+  WHERE id = $2;"
+  values = [@name, @id]
+  SqlRunner.run(sql, values)
+end
 
+def self.find(id)
+  sql = "SELECT * FROM artists WHERE id = $1;"
+  values = [id]
+  results = SqlRunner.run(sql, values)
+  return nil if results[0] == nil
+  artist_hash = results[0]
+  artist = Artist.new(artist_hash)
+  return artist
+end
 end

@@ -37,5 +37,7 @@ album3 = Album.new({
 })
 album3.save()
 
+Album.find(album1.id)
+
 binding.pry
 nil
